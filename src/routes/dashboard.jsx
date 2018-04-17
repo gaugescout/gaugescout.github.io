@@ -69,6 +69,7 @@ var dashRoutes = [
   },
   { path: "/current-level", name: "Current Level", icon: WidgetsIcon, component: LevelCurrent },
   { path: "/level-history", name: "Level History", icon: Timeline, component: LevelHistory },
+  { path: "/mock-device", name: "Mock Device", icon: Timeline, component: ExtendedForms },
   {
     collapse: true,
     path: "-page",
