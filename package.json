@@ -36,7 +36,6 @@
     "build": "rm -Rf build;npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "sh scripts/gh-pages-deploy.sh",
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build"
   },
