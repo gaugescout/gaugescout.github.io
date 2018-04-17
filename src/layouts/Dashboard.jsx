@@ -86,7 +86,7 @@ class Dashboard extends React.Component {
       <div className={classes.wrapper}>
         <Sidebar
           routes={dashboardRoutes}
-          logoText={"Gauge Scout"}
+          logoText={"Gauge Scout!"}
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
