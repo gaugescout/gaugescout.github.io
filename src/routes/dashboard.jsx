@@ -24,6 +24,8 @@ import TimelinePage from "views/Pages/Timeline.jsx";
 import RTLSupport from "views/Pages/RTLSupport.jsx";
 import LevelHistory from "views/LevelHistory/LevelHistory.jsx";
 import LevelCurrent from "views/LevelCurrent/LevelCurrent.jsx";
+import MockDevice from "views/MockDevice/MockDevice.jsx";
+
 
 
 import pagesRoutes from "./pages.jsx";
@@ -38,6 +40,9 @@ import Place from "material-ui-icons/Place";
 import WidgetsIcon from "material-ui-icons/Widgets";
 import Timeline from "material-ui-icons/Timeline";
 import DateRange from "material-ui-icons/DateRange";
+import PhoneIphone from "material-ui-icons/PhoneIphone";
+import History from "material-ui-icons/History";
+
 
 var pages = [
   {
@@ -67,9 +72,9 @@ var dashRoutes = [
     icon: DashboardIcon,
     component: Dashboard
   },
-  { path: "/current-level", name: "Current Level", icon: WidgetsIcon, component: LevelCurrent },
+  { path: "/current-level", name: "Current Level", icon: History, component: LevelCurrent },
   { path: "/level-history", name: "Level History", icon: Timeline, component: LevelHistory },
-  { path: "/mock-device", name: "Mock Device", icon: Timeline, component: ExtendedForms },
+  { path: "/mock-device", name: "Mock Device", icon: PhoneIphone, component: MockDevice },
   {
     collapse: true,
     path: "-page",
