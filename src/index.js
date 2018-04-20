@@ -2,6 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { HashRouter, Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+import reducers from "./redux/reducers";
 import indexRoutes from "routes/index.jsx";
 import "assets/scss/material-dashboard-pro-react.css";
 // let hashHistory = Router.hashHistory;
@@ -9,15 +13,20 @@ import "assets/scss/material-dashboard-pro-react.css";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
-
-<Router history={hist}>
-  <HashRouter>
-    <Switch>
-      {indexRoutes.map((prop, key) => {
-        return <Route path={prop.path} component={prop.component} key={key} />;
-      })}
-    </Switch>
-    </HashRouter>
-  </Router>,
+  <Provider store={createStore(reducers)}>
+    <Router history={hist}>
+      <HashRouter>
+        <Switch>
+          {indexRoutes.map((prop, key) => {
+            return <Route path={prop.path} component={prop.component} key={key} />;
+          })}
+        </Switch>
+      </HashRouter>
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
+
+
+
+

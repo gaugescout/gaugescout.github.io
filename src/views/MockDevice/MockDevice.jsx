@@ -31,6 +31,9 @@ import ImageUpload from "components/CustomUpload/ImageUpload.jsx";
 import IconButton from "components/CustomButtons/IconButton.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
+import BookList from "../../components/Books/BooksList";
+
+
 import extendedFormsStyle from "assets/jss/material-dashboard-pro-react/views/extendedFormsStyle.jsx";
 
 class MockDevice extends React.Component {
@@ -61,6 +64,10 @@ class MockDevice extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+        <div>
+          <h2>List</h2>
+          <BookList />
+        </div>
         <GridContainer>
 
           <ItemGrid xs={12} sm={12} md={4}>
