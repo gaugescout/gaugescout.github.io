@@ -7,8 +7,12 @@ import { createStore } from "redux";
 
 import reducers from "./redux/reducers";
 import indexRoutes from "routes/index.jsx";
+
 import "assets/scss/material-dashboard-pro-react.css";
+import { ActionSearch } from "material-ui";
 // let hashHistory = Router.hashHistory;
+
+
 
 const hist = createBrowserHistory();
 
