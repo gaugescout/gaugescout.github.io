@@ -32,6 +32,7 @@ Special thanks go to:
 + [Material Dashboard Free Html](http://demos.creative-tim.com/material-dashboard/examples/dashboard.html)
 + [Material Dashboard PRO Angular](https://md-pro-angular.creative-tim.com/dashboard)
 + [Material Dashboard Free Angular](http://md-angular2.creative-tim.com/dashboard)
++ [Redux Tutorial](https://daveceddia.com/how-does-redux-work/) - Bill liked this tutorial.
 
 ## Quick Start:
 

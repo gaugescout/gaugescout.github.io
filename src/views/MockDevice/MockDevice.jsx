@@ -1,9 +1,7 @@
-import React from "react";
-// react component plugin for creating a beautiful datetime dropdown picker
+// import React from "react";
+import React, {Component} from 'react';
 import Datetime from "react-datetime";
-// react component plugin for creating beatiful tags on an input
 import TagsInput from "react-tagsinput";
-// react plugin that creates slider
 import Nouislider from "react-nouislider";
 
 // material-ui components
@@ -11,56 +9,47 @@ import withStyles from "material-ui/styles/withStyles";
 import FormControl from "material-ui/Form/FormControl";
 import FormControlLabel from "material-ui/Form/FormControlLabel";
 import InputLabel from "material-ui/Input/InputLabel";
-import Switch from "material-ui/Switch";
-import Select from "material-ui/Select";
-import MenuItem from "material-ui/Menu/MenuItem";
 
-// material-ui-icons
-import Today from "material-ui-icons/Today";
-import LibraryBooks from "material-ui-icons/LibraryBooks";
-import AvTimer from "material-ui-icons/AvTimer";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import ItemGrid from "components/Grid/ItemGrid.jsx";
 import RegularCard from "components/Cards/RegularCard.jsx";
-import IconCard from "components/Cards/IconCard.jsx";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
-import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
-import ImageUpload from "components/CustomUpload/ImageUpload.jsx";
-import IconButton from "components/CustomButtons/IconButton.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
 import extendedFormsStyle from "assets/jss/material-dashboard-pro-react/views/extendedFormsStyle.jsx";
 
+
+// Redux stuff
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {getDeviceList} from '../../redux/actions/index';
+import {getDeviceLocations} from '../../redux/actions/index';
+import DeviceService from "services/device_service.js";
+
+
+
 class MockDevice extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      checkedA: true,
-      checkedB: false,
-      simpleSelect: "",
-      multipleSelect: [],
-      tags: ["pizza", "pasta", "parmesan"]
-    };
-    this.handleTags = this.handleTags.bind(this);
   }
-  handleSimple = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-  handleMultiple = event => {
-    this.setState({ multipleSelect: event.target.value });
-  };
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-  handleTags(regularTags) {
-    this.setState({ tags: regularTags });
+  componentDidMount() {
+    this.props.getDeviceList();
   }
+  renderDeviceList() {
+    return this.props.deviceList.map((location) => {
+        return (
+            location.name
+        );
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div>
+
         <GridContainer>
 
           <ItemGrid xs={12} sm={12} md={4}>
@@ -76,16 +65,10 @@ class MockDevice extends React.Component {
                         buttonText="Select device"
                         buttonProps={{
                           round: false,
-                          fullWidth: true,
                           style: { marginBottom: "0" }
                         }}
                         dropdownHeader="Device list"
-                        dropdownList={[
-                          "Device 1",
-                          "Device 2",
-                          "Device 3",
-                          "Device 4"
-                        ]}
+                        dropdownList={ this.renderDeviceList() }
                       />
                     </FormControl>
                   </div>
@@ -119,7 +102,6 @@ class MockDevice extends React.Component {
                   <Button
                     color="primary"
                     size="lg"
-                    fullWidth="true"
                   >
                     Submit Level
                   </Button>
@@ -136,4 +118,19 @@ class MockDevice extends React.Component {
   }
 }
 
-export default withStyles(extendedFormsStyle)(MockDevice);
+// Redux Mapping
+function mapStateToProps(state) {
+  return {
+      deviceList: state.deviceList,
+      deviceLocations: state.deviceLocations
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getDeviceList: getDeviceList, getDeviceLocations:getDeviceLocations }, dispatch);
+}
+
+// Component export
+const MockDeviceWithStyles = withStyles(extendedFormsStyle)(MockDevice);
+export default connect(mapStateToProps, mapDispatchToProps)(MockDeviceWithStyles);
+

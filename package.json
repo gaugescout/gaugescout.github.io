@@ -21,11 +21,15 @@
     "react-google-maps": "9.4.5",
     "react-jvectormap": "0.0.2",
     "react-nouislider": "2.0.1",
+    "react-redux": "^5.0.7",
     "react-router-dom": "4.2.2",
     "react-scripts": "1.1.1",
     "react-swipeable-views": "0.12.13",
     "react-table": "6.8.0",
-    "react-tagsinput": "3.19.0"
+    "react-tagsinput": "3.19.0",
+    "recompose": "^0.27.0",
+    "redux": "^4.0.0",
+    "redux-promise": "^0.5.3"
   },
   "homepage": "https://gaugescout.github.io",
   "scripts": {
@@ -36,9 +40,10 @@
     "build": "rm -Rf build;npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "echo 'no precompile on deploy!';gh-pages -o github -b master -d build"
+    "deploy": "echo 'no precompile on deployz !';gh-pages -o github -b master -d build"
   },
   "devDependencies": {
-    "gh-pages": "^1.1.0"
+    "gh-pages": "^1.1.0",
+    "redux-devtools": "^3.4.1"
   }
 }
