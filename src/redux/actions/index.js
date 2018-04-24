@@ -6,12 +6,11 @@ export function getDeviceLocations() {
     // console.log("A book has been selected:", book);
 
     let service = new DeviceService;
-    let test = service.doTest("monkey");
-    console.log("test:"+test);
-    service.getDeviceLocations();
+    let requestPromise = service.getDeviceLocations();
+    console.log('Action request:', requestPromise);
 
     return {
       type: "RECEIVED_DEVICE_LOCATIONS",
-      payload: {}
+      payload: requestPromise
     };
   }

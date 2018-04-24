@@ -48,10 +48,17 @@ class DeviceService {
   getDeviceLocations() {
     console.log("getDeviceLocations!");
     // Below is username + password flow
+    // let url = this.CORS_PROXY_URL + this.SERVICE_DEVICE_LOCATIONS_URL;
+    // axios.get(url)
+    // .then(this.onGetDeviceLocations.bind(this))   
+    // .catch(this.onGetDeviceLocationsError.bind(this));
+
     let url = this.CORS_PROXY_URL + this.SERVICE_DEVICE_LOCATIONS_URL;
-    axios.get(url)
-    .then(this.onGetDeviceLocations.bind(this))   
-    .catch(this.onGetDeviceLocationsError.bind(this));
+    let requestPromise = axios.get(url);
+    // .then(this.onGetDeviceLocations.bind(this))   
+    // .catch(this.onGetDeviceLocationsError.bind(this));
+    return requestPromise;
+
   }
 
   /**
