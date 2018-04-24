@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, {Component} from 'react';
 // react component plugin for creating a beautiful datetime dropdown picker
 import Datetime from "react-datetime";
 // react component plugin for creating beatiful tags on an input
@@ -32,9 +33,18 @@ import IconButton from "components/CustomButtons/IconButton.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
 import BookList from "../../components/Books/BooksList";
-
-
 import extendedFormsStyle from "assets/jss/material-dashboard-pro-react/views/extendedFormsStyle.jsx";
+
+
+// Redux stuff
+// import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {getDeviceList} from '../../redux/actions/index';
+import {getDeviceLocations} from '../../redux/actions/index';
+import DeviceService from "services/device_service.js";
+
+
 
 class MockDevice extends React.Component {
   constructor(props) {
@@ -48,6 +58,10 @@ class MockDevice extends React.Component {
     };
     this.handleTags = this.handleTags.bind(this);
   }
+  componentDidMount() {
+    this.props.getDeviceList();
+    // this.props.getDeviceLocations();
+  }
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -60,13 +74,28 @@ class MockDevice extends React.Component {
   handleTags(regularTags) {
     this.setState({ tags: regularTags });
   }
+
+
+  renderDeviceList() {
+    return this.props.deviceList.map((location) => {
+        return (
+            <li 
+                key={location.id}>
+                {location.name}
+            </li>
+        );
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div>
         <div>
           <h2>List</h2>
-          <BookList />
+          <ul>
+                { this.renderDeviceList() }
+            </ul>
         </div>
         <GridContainer>
 
@@ -141,4 +170,18 @@ class MockDevice extends React.Component {
   }
 }
 
-export default withStyles(extendedFormsStyle)(MockDevice);
+
+function mapStateToProps(state) {
+  return {
+      deviceList: state.deviceList,
+      deviceLocations: state.deviceLocations
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getDeviceList: getDeviceList, getDeviceLocations:getDeviceLocations }, dispatch);
+}
+
+
+const MockDeviceWithStyles = withStyles(extendedFormsStyle)(MockDevice);
+export default connect(mapStateToProps, mapDispatchToProps)(MockDeviceWithStyles);
