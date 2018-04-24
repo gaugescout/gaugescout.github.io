@@ -10,6 +10,7 @@ import {selectBook} from '../redux/actions/index';
 /**
  * SalesforceService - API client for Salesforce calls
  * TODO: This is currently a stub to extra API service calls. Still need to use it in code
+ * http://gaugescoutapi.azurewebsites.net/swagger/
  */
 class DeviceService {
 
