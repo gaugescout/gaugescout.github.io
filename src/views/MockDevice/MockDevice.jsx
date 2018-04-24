@@ -32,7 +32,6 @@ import ImageUpload from "components/CustomUpload/ImageUpload.jsx";
 import IconButton from "components/CustomButtons/IconButton.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-import BookList from "../../components/Books/BooksList";
 import extendedFormsStyle from "assets/jss/material-dashboard-pro-react/views/extendedFormsStyle.jsx";
 
 
@@ -76,13 +75,20 @@ class MockDevice extends React.Component {
   }
 
 
+  // renderDeviceList() {
+  //   return this.props.deviceList.map((location) => {
+  //       return (
+  //           <li 
+  //               key={location.id}>
+  //               {location.name}
+  //           </li>
+  //       );
+  //   });
+  // }
   renderDeviceList() {
     return this.props.deviceList.map((location) => {
         return (
-            <li 
-                key={location.id}>
-                {location.name}
-            </li>
+            location.name
         );
     });
   }
@@ -93,9 +99,9 @@ class MockDevice extends React.Component {
       <div>
         <div>
           <h2>List</h2>
-          <ul>
+          {/* <ul>
                 { this.renderDeviceList() }
-            </ul>
+            </ul> */}
         </div>
         <GridContainer>
 
@@ -115,12 +121,7 @@ class MockDevice extends React.Component {
                           style: { marginBottom: "0" }
                         }}
                         dropdownHeader="Device list"
-                        dropdownList={[
-                          "Device 1",
-                          "Device 2",
-                          "Device 3",
-                          "Device 4"
-                        ]}
+                        dropdownList={ this.renderDeviceList() }
                       />
                     </FormControl>
                   </div>
