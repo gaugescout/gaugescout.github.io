@@ -15,7 +15,7 @@ import { ActionSearch } from "material-ui";
 
 const createStoreWithMiddleWare = applyMiddleware(ReduxPromise)(createStore);
 
-const hist = createBrowserHistory();
+const hist = createBrowserHistory();   
 
 ReactDOM.render(
   <Provider store={ createStoreWithMiddleWare(reducers)}>

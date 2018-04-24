@@ -1,9 +1,17 @@
-export function selectBook(book) {
-    // selectBook is an ActionCreator, it needs to return an action,
+import DeviceService from "services/device_service.js";
+
+export function getDeviceLocations() {
+    // getDeviceLocations is an ActionCreator, it needs to return an action,
     // an object with a type property.
-    console.log("A book has been selected:", book);
+    // console.log("A book has been selected:", book);
+
+    let service = new DeviceService;
+    let test = service.doTest("monkey");
+    console.log("test:"+test);
+    service.getDeviceLocations();
+
     return {
-      type: "BOOK_SELECTED",
-      payload: book
+      type: "RECEIVED_DEVICE_LOCATIONS",
+      payload: {}
     };
   }

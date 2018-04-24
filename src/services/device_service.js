@@ -4,7 +4,7 @@ import querystring from 'query-string';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {selectBook} from '../redux/actions/index';
+import {getDeviceLocations} from '../redux/actions/index';
 
 
 /**
@@ -60,7 +60,7 @@ class DeviceService {
    */
   onGetDeviceLocations(response) {
     console.log("onGetDeviceLocations:", response.data );
-    // this.props.selectBook(response.data);
+    // this.props.getDeviceLocations(response.data);
   }
 
   /**
@@ -80,7 +80,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectBook: selectBook }, dispatch);
+  return bindActionCreators({ getDeviceLocations: getDeviceLocations }, dispatch);
 }
 
 

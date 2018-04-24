@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {selectBook} from '../../redux/actions/index';
+import {getDeviceLocations} from '../../redux/actions/index';
 import DeviceService from "services/device_service.js";
  
 class BookList extends Component {
@@ -11,18 +11,21 @@ class BookList extends Component {
         // TODO: Load data from API, save response in BookList reducer just for a test
         // curl -X GET 'http://gaugescoutapi.azurewebsites.net/api/DeviceLocations'
         // DeviceService.getDeviceLocations();
-        let service = new DeviceService;
-        let test = service.doTest("monkey");
-        console.log("test:"+test);
-        service.getDeviceLocations();
+        // let service = new DeviceService;
+        // let test = service.doTest("monkey");
+        // console.log("test:"+test);
+        // service.getDeviceLocations();
+        // this.props.getDeviceLocations();
+    }
+    componentDidMount() {
+        this.props.getDeviceLocations();
     }
     renderList() {
-        return this.props.books.map((book) => {
+        return this.props.deviceLocations.map((location) => {
             return (
                 <li 
-                    key={book.title}
-                    onClick={() => this.props.selectBook(book)}>
-                    {book.title}
+                    key={location.id}>
+                    {location.address}
                 </li>
             );
         });
@@ -39,12 +42,12 @@ class BookList extends Component {
 
 function mapStateToProps(state) {
     return {
-        books: state.books
+        deviceLocations: state.deviceLocations
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ selectBook: selectBook }, dispatch);
+    return bindActionCreators({ getDeviceLocations: getDeviceLocations }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);
