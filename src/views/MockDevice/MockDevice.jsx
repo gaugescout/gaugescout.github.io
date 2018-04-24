@@ -83,7 +83,6 @@ class MockDevice extends React.Component {
                         buttonText="Select device"
                         buttonProps={{
                           round: false,
-                          fullWidth: true,
                           style: { marginBottom: "0" }
                         }}
                         dropdownHeader="Device list"
@@ -126,7 +125,6 @@ class MockDevice extends React.Component {
                   <Button
                     color="primary"
                     size="lg"
-                    fullWidth="true"
                   >
                     Submit Level
                   </Button>
