@@ -2,6 +2,10 @@
 import axios from 'axios';
 import querystring from 'query-string';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {selectBook} from '../redux/actions/index';
+
 
 /**
  * SalesforceService - API client for Salesforce calls
@@ -22,6 +26,9 @@ class DeviceService {
 
 
   constructor() {
+
+    connect(mapStateToProps, mapDispatchToProps)(DeviceService);
+
     // this.SERVICE_URL = "https://jsonplaceholder.typicode.com";
     this.SERVICE_DEVICE_LOCATIONS_URL = "http://gaugescoutapi.azurewebsites.net/api/DeviceLocations";
     this.CORS_PROXY_URL = "https://cors-anywhere.herokuapp.com/";
@@ -52,6 +59,7 @@ class DeviceService {
    */
   onGetDeviceLocations(response) {
     console.log("onGetDeviceLocations:", response.data );
+    // this.props.selectBook(response.data);
   }
 
   /**
@@ -63,5 +71,18 @@ class DeviceService {
   }
 
 }
+
+function mapStateToProps(state) {
+  return {
+      books: state.books
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectBook: selectBook }, dispatch);
+}
+
+
+
 
 export default DeviceService;
