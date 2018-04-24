@@ -23,7 +23,7 @@ class DeviceService {
 
   constructor() {
     // this.SERVICE_URL = "https://jsonplaceholder.typicode.com";
-    this.SERVICE_DEVICE_LEVELS_URL = "http://gauge-scout.getsandbox.com/levels";
+    this.SERVICE_DEVICE_LOCATIONS_URL = "http://gaugescoutapi.azurewebsites.net/api/DeviceLocations";
     this.CORS_PROXY_URL = "https://cors-anywhere.herokuapp.com/";
 
     console.log("Device Service constructor");
@@ -37,28 +37,29 @@ class DeviceService {
   /**
    * Get auth using username and password
    */
-  getCurrentLevel() {
+  getDeviceLocations() {
+    console.log("getDeviceLocations!");
     // Below is username + password flow
-    let url = this.CORS_PROXY_URL + this.SERVICE_DEVICE_LEVELS_URL;
+    let url = this.CORS_PROXY_URL + this.SERVICE_DEVICE_LOCATIONS_URL;
     axios.get(url)
-    .then(this.onGetCurrentLevel.bind(this))   
-    .catch(this.onGetCurrentLevelError.bind(this));
+    .then(this.onGetDeviceLocations.bind(this))   
+    .catch(this.onGetDeviceLocationsError.bind(this));
   }
 
   /**
    * Handle Auth
    * @param {object} response - response.data is what we need
    */
-  onGetCurrentLevel(response) {
-    console.log("onGetCurrentLevel:",response.data );
+  onGetDeviceLocations(response) {
+    console.log("onGetDeviceLocations:", response.data );
   }
 
   /**
    * Handle Auth error
    * @param {object} error 
    */
-  onGetCurrentLevelError(error) {
-    console.log('error ' + error);
+  onGetDeviceLocationsError(error) {
+    console.log('onGetDeviceLocationsError ', error);
   }
 
 }
