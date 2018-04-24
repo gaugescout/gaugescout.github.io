@@ -1,31 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {getDeviceList} from '../../redux/actions/index';
 import {getDeviceLocations} from '../../redux/actions/index';
 import DeviceService from "services/device_service.js";
  
 class BookList extends Component {
     constructor(){
         super();
-
-        // TODO: Load data from API, save response in BookList reducer just for a test
-        // curl -X GET 'http://gaugescoutapi.azurewebsites.net/api/DeviceLocations'
-        // DeviceService.getDeviceLocations();
-        // let service = new DeviceService;
-        // let test = service.doTest("monkey");
-        // console.log("test:"+test);
-        // service.getDeviceLocations();
-        // this.props.getDeviceLocations();
     }
     componentDidMount() {
-        this.props.getDeviceLocations();
+        this.props.getDeviceList();
+        // this.props.getDeviceLocations();
     }
-    renderList() {
-        return this.props.deviceLocations.map((location) => {
+    renderDeviceList() {
+        return this.props.deviceList.map((location) => {
             return (
                 <li 
                     key={location.id}>
-                    {location.address}
+                    {location.name}
                 </li>
             );
         });
@@ -34,7 +27,7 @@ class BookList extends Component {
     render() {
         return (
             <ul>
-                { this.renderList() }
+                { this.renderDeviceList() }
             </ul>
         )
     }
@@ -42,12 +35,13 @@ class BookList extends Component {
 
 function mapStateToProps(state) {
     return {
+        deviceList: state.deviceList,
         deviceLocations: state.deviceLocations
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getDeviceLocations: getDeviceLocations }, dispatch);
+    return bindActionCreators({ getDeviceList: getDeviceList, getDeviceLocations:getDeviceLocations }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);
